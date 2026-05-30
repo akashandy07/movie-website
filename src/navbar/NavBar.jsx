@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-// import SearchFilter from '../serchfillter/SearchFilter'
-import './NavBar.css'
-import { useNavigate } from 'react-router-dom'
-
+import React, { useState } from "react";
+import "./NavBar.css";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+  const handleNavigate = (path) => {
+    navigate(path);
+    setMenuOpen(false);
+  };
 
   return (
     <>
@@ -15,45 +17,49 @@ const NavBar = () => {
         <div className="navbar">
 
           {/* Logo */}
-          <div className="logo">MyFlix</div>
-
-          {/* Menu */}
-          <div className="nav-links">
-            <span onClick={() => navigate("/")}>Movie</span>
-            <span onClick={() => navigate("/tv")}>TV Shows</span>
-            <span onClick={() => navigate('/my-list')}>My List</span>
+          <div className="logo" onClick={() => navigate("/")}>
+            MyFlix
           </div>
 
-          {/* Right side */}
+          {/* Desktop Menu */}
+          <div className="nav-links desktop">
+            <span onClick={() => navigate("/")}>Movie</span>
+            <span onClick={() => navigate("/tv")}>TV Shows</span>
+            <span onClick={() => navigate("/my-list")}>My List</span>
+          </div>
+
+          {/* Right */}
           <div className="right-section">
+            <button
+              className="login-btn"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </button>
 
-            {/* Search */}
-            {/* <div className="search-box">
-              <input
-                type="text"
-                placeholder="Search for movies..."
-                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div> */}
-
-            <div>
-              <button className="login-btn"
-                onClick={() => navigate("/login")}>
-                Login
-              </button>
+            {/* Hamburger */}
+            <div
+              className="hamburger"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              ☰
             </div>
-
           </div>
 
         </div>
-
       </div>
 
-      {/* <SearchFilter searchTerm={searchTerm} /> */}
+      {/* Overlay */}
+      {menuOpen && <div className="overlay" onClick={() => setMenuOpen(false)} />}
+
+      {/* Slide Menu */}
+      <div className={`side-menu ${menuOpen ? "open" : ""}`}>
+        <span onClick={() => handleNavigate("/")}>Movie</span>
+        <span onClick={() => handleNavigate("/tv")}>TV Shows</span>
+        <span onClick={() => handleNavigate("/my-list")}>My List</span>
+      </div>
     </>
-  )
+  );
+};
 
-}
-
-export default NavBar
+export default NavBar;
