@@ -14,9 +14,9 @@ export const useTvActionss = () => {
 
         if (trailer) {
             window.open(
-                `https://www.youtube.com/watch?v=${trailer.key}`,
-                '_blank'
-            )
+                `https://youtu.be/${trailer.key}`,
+                "_blank"
+            );
         } else {
             alert('No video available')
         }
