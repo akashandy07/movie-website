@@ -13,14 +13,13 @@ import Approved from './components/Approved'
 import TvDetails from './tv/TvDetails'
 import TopRarted from './components/TopRarted'
 import NowPlaying from './components/NowPlaying'
-
-
-
+import GenursMovie from './components/GenursMovie'
 import AboutPage from './Shop/AboutPage'
 import ContactPage from './Shop/ContactPage'
 import FAQPage from './Shop/FAQPage'
 import PrivacyPolicy from './Shop/PrivacyPolicy'
 import TermsofUse from './Shop/TermsofUse'
+import SearchFilter from './serchfillter/SearchFilter'
 
 
 
@@ -39,9 +38,11 @@ const App = () => {
           <Route path="/" element={
             <>
               <Banner />
+              <GenursMovie />
               <HomeShow />
               <NowPlaying />
               <TopRarted />
+
 
 
             </>
@@ -52,6 +53,8 @@ const App = () => {
           <Route path="/my-list" element={<SavedMovie />} />
           <Route path="/tv" element={<TvSection />} />
           <Route path="/tv/:id" element={<TvDetails />} />
+          <Route path="/search" element={<SearchFilter />} />
+
 
 
 
@@ -60,6 +63,7 @@ const App = () => {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsofUse />} />
+
 
 
 

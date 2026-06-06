@@ -1,0 +1,111 @@
+.genres-Container,
+.movies-list {
+    padding: 20px 40px;
+    background: #0d0d0d;
+}
+
+.genres-Container {
+    margin-top: 20px;
+}
+
+.genres-Container h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 16px;
+    border-left: 3px solid #e50914;
+    padding-left: 10px;
+}
+
+.genres-buttons,
+.movies-header {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.movie-item {
+    flex: 0 0 140px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+    background: #1a1a1a;
+    cursor: pointer;
+}
+
+.movie-item img {
+    width: 100%;
+    /* ✅ was missing */
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-item h3 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #eee;
+    padding: 8px 8px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hoverplays {
+    position: absolute;
+    inset: 0;
+    top: 140px;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.movie-item:hover .hoverplays {
+    opacity: 1;
+}
+
+.movie-item:hover {
+    transform: scale(1.04);
+}
+
+
+.hoverplays button {
+    background: #e50914;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: calc(100% - 16px);
+}
+
+.hoverplays button:hover {
+    background: #c40812;
+}
+
+.genres-buttons button {
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.genres-buttons button:hover {
+    background: #333;
+}
+
+.genres-buttons button.active {
+    background: #e50914;
+    /* ✅ red when selected */
+    border-color: #e50914;
+}

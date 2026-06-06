@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-brand">
-          <div className="brand-logo">CINEMAX</div>
+          <div className="brand-logo">MyFlix</div>
           <p className="brand-desc">
             Your ultimate destination for movies and TV shows.
             Stream the latest blockbusters anytime, anywhere.

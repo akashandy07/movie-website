@@ -19,8 +19,6 @@ const Approved = () => {
                 const sessionId = await createSession(token);
               
 
-                // Add this log
-                // ✅ Correct
                 const res = await axios.get(
                     `https://api.themoviedb.org/3/account?session_id=${sessionId}&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
                 );

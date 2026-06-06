@@ -1,15 +1,33 @@
 import React, { useState } from "react";
 import "./NavBar.css";
 import { useNavigate } from "react-router-dom";
+import { useSearchMovie } from "../custom/SearchMovie";
+import SearchFilter from "../serchfillter/SearchFilter";
+
+
+
+
+
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const [query, setQuery] = useState("")
+
 
   const handleNavigate = (path) => {
     navigate(path);
     setMenuOpen(false);
   };
+
+  const searchhandler = () => {
+    if (query.trim()) {
+      navigate(`/search?query=${query}`)
+      setQuery("") // clear input after search
+    }
+  }
+
+
 
   return (
     <>
@@ -26,6 +44,19 @@ const NavBar = () => {
             <span onClick={() => navigate("/")}>Movie</span>
             <span onClick={() => navigate("/tv")}>TV Shows</span>
             <span onClick={() => navigate("/my-list")}>My List</span>
+          </div>
+
+          <div className="search-container">
+            <div className="search-section">
+              <input
+                type="text"
+                placeholder="Search movies..."
+                value={query} // ✅ bind to search input
+                onChange={(e) => setQuery(e.target.value)}
+
+              />
+              <button onClick={searchhandler}>Search</button>
+            </div>
           </div>
 
           {/* Right */}

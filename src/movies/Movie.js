@@ -186,11 +186,33 @@ export const getOnTheAir = async () => {
     const res = await tmdb.get("/tv/on_the_air")
     return res.data.results
 }
+
 export const getAiringTodays = async () => {
     const res = await tmdb.get("/tv/airing_today")
     return res.data.results
 }
 
+export async function getMovieGenres() {
+    const res = await tmdb.get("/genre/movie/list")
+    return res
+}
+
+export async function getMoviesByGenres(genreId) {
+    const res = await tmdb.get("/discover/movie", {
+        params: {
+            with_genres: genreId,
+        }
+    })
+    return res.data.results
+}
+
+export async function searchMovies(query) {
+    const res = await tmdb.get("/search/movie", {
+        params: { query }
+
+    })
+    return res.data.results
+}
 
 
 
