@@ -4,9 +4,12 @@
     background: #0d0d0d;
     min-height: 100vh;
     display: flex;
+
     flex-wrap: wrap;
     gap: 16px;
 }
+
+.search-results h4 {}
 
 /* ===== No Results Text ===== */
 .search-results p {
@@ -44,7 +47,8 @@
 .hoverplays {
     position: absolute;
     inset: 0;
-    top: 140px;               /* overlay starts partway down the card */
+    top: 140px;
+    /* overlay starts partway down the card */
     background: rgba(0, 0, 0, 0.55);
     display: flex;
     align-items: center;
@@ -71,4 +75,84 @@
 
 .hoverplays button:hover {
     background: #c40812;
+}
+
+/* ── Tablet (≤ 768px) ── */
+@media (max-width: 768px) {
+
+    .search-results {
+        padding: 80px 20px 20px;
+        gap: 12px;
+    }
+
+    .MOVIE {
+        flex: 0 0 120px;
+    }
+
+    .MOVIE img {
+        height: 170px;
+    }
+
+    .hoverplays {
+        top: 115px;
+    }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+
+    .search-results {
+        padding: 70px 12px 16px;
+        gap: 10px;
+        /* ✅ 3 cards per row on mobile */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .search-results p {
+        font-size: 13px;
+        padding: 8px 0;
+    }
+
+    .MOVIE {
+        /* ✅ 3 per row with gap accounted for */
+        flex: 0 0 calc(33.33% - 8px);
+        border-radius: 5px;
+    }
+
+    .MOVIE img {
+        height: 145px;
+    }
+
+    .hoverplays {
+        top: 95px;
+    }
+
+    .hoverplays button {
+        font-size: 11px;
+        padding: 7px 8px;
+    }
+}
+
+/* ── Very Small (≤ 360px) ── */
+@media (max-width: 360px) {
+
+    .search-results {
+        padding: 65px 10px 14px;
+        gap: 8px;
+    }
+
+    .MOVIE {
+        /* ✅ 2 cards per row on tiny screens */
+        flex: 0 0 calc(50% - 5px);
+    }
+
+    .MOVIE img {
+        height: 155px;
+    }
+
+    .hoverplays {
+        top: 105px;
+    }
 }

@@ -109,3 +109,117 @@
     /* ✅ red when selected */
     border-color: #e50914;
 }
+
+
+/* ============================================
+   MEDIA QUERIES - GenursMovie / Genres
+   ============================================ */
+
+/* ── Tablet (≤ 768px) ── */
+@media (max-width: 768px) {
+
+    .genres-Container,
+    .movies-list {
+        padding: 16px 20px;
+    }
+
+    .genres-Container h4 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .movie-item {
+        flex: 0 0 120px;
+    }
+
+    .movie-item img {
+        height: 170px;
+    }
+
+    .hoverplays {
+        top: 115px;
+    }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+
+    .genres-Container,
+    .movies-list {
+        padding: 12px 14px;
+    }
+
+    .genres-Container h4 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    /* ✅ Genre buttons row — horizontal scroll */
+    .genres-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+        /* keep all buttons in one row */
+        overflow-x: auto;
+        /* swipeable */
+        scrollbar-width: none;
+        /* hide scrollbar Firefox */
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 6px;
+        /* breathing room under buttons */
+    }
+
+    .genres-buttons::-webkit-scrollbar {
+        display: none;
+        /* hide scrollbar Chrome/Safari */
+    }
+
+    .genres-buttons button {
+        flex: 0 0 auto;
+        /* prevent shrinking */
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 16px;
+    }
+
+    /* ✅ Movie cards row — horizontal scroll */
+    .movies-header {
+        display: flex;
+        flex-wrap: nowrap;
+        /* single row */
+        overflow-x: auto;
+        /* swipeable */
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
+        padding-bottom: 8px;
+    }
+
+    .movies-header::-webkit-scrollbar {
+        display: none;
+    }
+
+    .movie-item {
+        flex: 0 0 110px;
+        /* fixed width, won't shrink */
+        border-radius: 5px;
+    }
+
+    .movie-item img {
+        height: 155px;
+    }
+
+    .movie-item h3 {
+        font-size: 10px;
+        padding: 6px 6px 3px;
+    }
+
+    .hoverplays {
+        top: 105px;
+    }
+
+    .hoverplays button {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+}

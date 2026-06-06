@@ -12,6 +12,7 @@ const SearchFilter = () => {
 
     return (
         <div className="search-results">
+           
             {movies.length > 0 ? (
                 movies.map(movie => (
                     <div
