@@ -165,7 +165,7 @@
         /* hide scrollbar Firefox */
         -webkit-overflow-scrolling: touch;
         gap: 8px;
-        padding-bottom: 48px;
+        padding-bottom: 30px;
         /* breathing room under buttons */
     }
 
