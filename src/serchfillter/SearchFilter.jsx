@@ -3,16 +3,16 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useSearchMovie } from '../custom/SearchMovie'
 import { useMovieActions } from '../custom/Videos'
 import './SearchFilter.css'
-const { handlePlay } = useMovieActions();
+
 const SearchFilter = () => {
     const [searchParams] = useSearchParams()
     const query = searchParams.get("query") // ✅ read query from URL
     const { movies } = useSearchMovie(query) // ✅ fetch movies using query
     const navigate = useNavigate()
-
+    const { handlePlay } = useMovieActions();
     return (
         <div className="search-results">
-           
+
             {movies.length > 0 ? (
                 movies.map(movie => (
                     <div
