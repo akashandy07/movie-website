@@ -7,22 +7,25 @@ import { useNavigate } from "react-router-dom";
 const BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
 const FALLBACK_IMG = "https://via.placeholder.com/300x450?text=No+Image";
 
-
 const NowPlaying = () => {
-    const { nowPlaying, loading } = useNowPlaying()
-    const { handlePlay } = useMovieActions();
+    const { state } = useNowPlaying()  // ✅ You don't need dispatch here
+    const { handlePlay } = useMovieActions(); 
     const navigate = useNavigate();
-
 
     return (
         <div>
             <div className="popular-section">
                 <h1>Now Playing</h1>
-                {loading ? (
+                
+                {state.loading ? (
                     <p>Loading...</p>
+                ) : state.error ? (  // ✅ Handle error
+                    <p>Error loading movies. Please try again.</p>
+                ) : state.movies.length === 0 ? (  // ✅ Handle empty
+                    <p>No movies found.</p>
                 ) : (
                     <div>
-                        {nowPlaying?.map((movie) => (
+                        {state.movies.map((movie) => (  // ✅ Use state.movies
                             <div
                                 key={movie.id}
                                 className="movie-details"
@@ -36,7 +39,6 @@ const NowPlaying = () => {
                                     }
                                     alt={movie.title}
                                 />
-
 
                                 <div className="movie-overlay">
                                     <button

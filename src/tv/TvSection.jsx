@@ -17,9 +17,9 @@ const TvSection = () => {
   const navigate = useNavigate()
   return (
     <>
-      
-      <TvBanner /> 
-      
+
+      <TvBanner />
+
       <div className='tv-section'>
         <h1>Popular TV Shows</h1>
         {loadings ? (
@@ -34,9 +34,7 @@ const TvSection = () => {
                 />
                 <div className="card-info">
                   <h3>{show.name}</h3>
-                  <button onClick={(e) => { e.stopPropagation(); handlePlay(show.id) }}>
-                    ▶ Watch
-                  </button>
+
                 </div>
               </div>
             ))}

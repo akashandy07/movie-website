@@ -4,7 +4,7 @@ import { searchMovies } from '../movies/Movie'  // keep import here
 
 export const useSearchMovie = (query) => {
     const [movies, setMovies] = useState([])  // ✅ renamed: stores results
-
+ 
     useEffect(() => {
         if (!query) return
 
