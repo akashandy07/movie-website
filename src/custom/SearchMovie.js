@@ -1,21 +1,49 @@
 // useSearchMovie.js
-import { useState, useEffect } from 'react'
-import { searchMovies } from '../movies/Movie'  // keep import here
+import { useReducer, useEffect } from 'react'
+import { searchMovies } from '../movies/Movie'
+
+const initialState = {
+    movies: [],
+    loading: false,
+    error: null
+}
+
+function searchReducer(state, action) {
+    switch (action.type) {
+        case 'LOADING':
+            return { ...state, loading: true, error: null }
+        case 'SUCCESS':
+            return { ...state, loading: false, movies: action.payload }
+        case 'ERROR':
+            return { ...state, loading: false, error: action.payload, movies: [] }
+        case 'RESET':
+            return initialState
+        default:
+            return state
+    }
+}
 
 export const useSearchMovie = (query) => {
-    const [movies, setMovies] = useState([])  // ✅ renamed: stores results
+    const [state, dispatch] = useReducer(searchReducer, initialState)
 
     useEffect(() => {
-        if (!query) return
+        if (!query) {
+            dispatch({ type: 'RESET' })
+            return
+        }
 
         const timer = setTimeout(async () => {
-            // this only runs if user stops typing for 400ms
-            const data = await searchMovies(query)
-            setMovies(data)
+            dispatch({ type: 'LOADING' })
+            try {
+                const data = await searchMovies(query)
+                dispatch({ type: 'SUCCESS', payload: data })
+            } catch (err) {
+                dispatch({ type: 'ERROR', payload: 'Something went wrong. Try again.' })
+            }
         }, 400)
 
-        return () => clearTimeout(timer)  // ← if user types again, cancel the previous timer
+        return () => clearTimeout(timer)
     }, [query])
 
-    return { movies }      
+    return state // returns { movies, loading, error }
 }

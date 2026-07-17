@@ -1,3 +1,4 @@
+// SearchFilter.jsx
 import React from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useSearchMovie } from '../custom/SearchMovie'
@@ -6,14 +7,31 @@ import './SearchFilter.css'
 
 const SearchFilter = () => {
     const [searchParams] = useSearchParams()
-    const query = searchParams.get("query") // ✅ read query from URL
-    const { movies } = useSearchMovie(query) // ✅ fetch movies using query
+    const query = searchParams.get("query")
+    const { movies, loading, error } = useSearchMovie(query)  // ✅ useReducer states
     const navigate = useNavigate()
-    const { handlePlay } = useMovieActions();
+    const { handlePlay } = useMovieActions()
+
     return (
         <div className="search-results">
 
-            {movies.length > 0 ? (
+            {/* Loading state */}
+            {loading && (
+                <p className="status-msg">Searching for "{query}"...</p>
+            )}
+
+            {/* Error state */}
+            {error && (
+                <p className="status-msg error">{error}</p>
+            )}
+
+            {/* No results */}
+            {!loading && !error && movies.length === 0 && (
+                <p className="status-msg">No results found for "{query}"</p>
+            )}
+
+            {/* Results */}
+            {!loading && !error && movies.length > 0 && (
                 movies.map(movie => (
                     <div
                         key={movie.id}
@@ -36,9 +54,8 @@ const SearchFilter = () => {
                         </div>
                     </div>
                 ))
-            ) : (
-                <p>No results found for "{query}"</p>
             )}
+
         </div>
     )
 }

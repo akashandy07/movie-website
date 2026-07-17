@@ -24,14 +24,16 @@ body {
   display: block;
   filter: brightness(40%);
 }
-.info button{
+
+.info button {
   border: none;
   padding: 8px 20px;
-  font-size: 14px;  
+  font-size: 14px;
   background-color: #e50914;
   color: white;
 }
-.info button:hover{
+
+.info button:hover {
   background-color: #ee0712;
   transform: scale(1.05);
 
@@ -102,7 +104,7 @@ body {
   padding-left: 10px;
 }
 
-.tv-section > p {
+.tv-section>p {
   color: #888;
   font-size: 13px;
 }
@@ -155,7 +157,7 @@ body {
   left: 0;
   right: 0;
   padding: 10px 8px 8px;
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 60%, transparent 100%);
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -192,4 +194,15 @@ body {
   background: #e50914;
   border-color: #e50914;
   color: #fff;
+}
+
+.new-movie {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  background: #0d0d0d;
+}
+
+.tv-movie-two {
+  display: flex;
 }

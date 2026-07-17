@@ -1,7 +1,7 @@
 import React from 'react'
-import { useAiringToday } from '../custom/AiringTodayTv'
-import { useTvActionss } from '../custom/TvVideos'
+import { useTvActionss } from '../custom/TvVideos';
 import { useNavigate } from "react-router-dom";
+import { useAiringToday } from '../custom/AiringTodayTv';
 import './Tv.css'
 
 const BASE_IMG_URL = "https://image.tmdb.org/t/p/w300";
@@ -13,7 +13,7 @@ const AiringTodaySection = () => {
     const navigate = useNavigate()
 
     return (
-        <div className='tv-section'>
+        <div className='new-movie'>
             <h1>Airing Today TV Shows</h1>
 
             {state.loading ? (
@@ -23,7 +23,7 @@ const AiringTodaySection = () => {
             ) : state.movies.length === 0 ? (  // ✅ Handle empty
                 <p>No movies found.</p>
             ) : (
-                <div>
+                <div className='tv-movie-two'>
                     {state.movies.map((movie) => (  // ✅ Use state.movies
                         <div
                             key={movie.id}
