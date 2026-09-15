@@ -29,13 +29,13 @@ export async function getVideos(id) {
 
 export async function getTvShow() {
     const res = await tmdb.get("/trending/tv/day")
-    console.log(res);
+    // console.log(res);
     return res.data.results
 }
 
+
 export async function getTvShowWeek() {
     const res = await tmdb.get("/trending/tv/week")
-    console.log(res);
     return res.data.results
 }
 
@@ -67,9 +67,6 @@ export async function createSession(requestToken) {
 export async function addToWatchlist(movieId) {
     const accountId = localStorage.getItem("account_id");
     const sessionId = localStorage.getItem("session_id");
-    console.log("ACCOUNT ID:", accountId);  // ← check
-    console.log("SESSION ID:", sessionId);  // ← check
-    console.log("MOVIE ID:", movieId);
 
     const res = await tmdb.post(
         `/account/${accountId}/watchlist`,
@@ -84,8 +81,6 @@ export async function addToWatchlist(movieId) {
             }
         }
     );
-    console.log(res.status);
-    console.log(res);
 
 
     return res.data;
@@ -194,6 +189,8 @@ export const getAiringTodays = async () => {
 
 export async function getMovieGenres() {
     const res = await tmdb.get("/genre/movie/list")
+    console.log(res);
+
     return res
 }
 

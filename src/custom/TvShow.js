@@ -10,6 +10,8 @@ export const useTvShow = () => {
     useEffect(() => {
         async function load() {
             const res = await getTvShow()
+
+
             setTv(res)
             setLoading(false)
         }

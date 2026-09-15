@@ -11,7 +11,6 @@ export const useGenres = () => {
     useEffect(() => {
         async function load() {
             const data = await getMovieGenres();
-            console.log( data.data.genres);
 
             // console.log("API Response:", data);
             // console.log("Genres:", data.data.genres);

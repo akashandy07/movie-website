@@ -14,10 +14,9 @@ export const AuthProvider = ({ children }) => {
         const account = localStorage.getItem("account_id");
         setSessionId(session);
         setAccountId(account);
-        console.log(session); // ✅ log the variable directly
-        console.log(account);
 
     }, []);
+
     const login = (session, account) => {
         localStorage.setItem("session_id", session);
         localStorage.setItem("account_id", account);
@@ -34,8 +33,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider
-            value={{
+        <AuthContext.Provider value={{
                 sessionId,
                 accountId,
                 login,

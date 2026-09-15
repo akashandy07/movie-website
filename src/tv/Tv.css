@@ -91,7 +91,7 @@ body {
 
 /* ===== TV SECTION ===== */
 .tv-section {
-  padding: 20px 40px;
+  padding: 20px 20px;
   background: #0d0d0d;
 }
 
@@ -199,10 +199,19 @@ body {
 .new-movie {
   display: flex;
   flex-direction: column;
-  padding: 20px 40px;
+  padding: 18px 20px;
   background: #0d0d0d;
   overflow-x: auto;
-   scrollbar-width: none;
+  scrollbar-width: none;
+
+}
+
+.new-movie h1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 16px;
+  border-left: 3px solid #e50914;
   
 }
 

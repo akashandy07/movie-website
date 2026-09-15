@@ -14,6 +14,7 @@
   top: 0px;
   left: 0px;
   z-index: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Navbar */
@@ -28,25 +29,36 @@
 
 /* Logo */
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 500;
   color: #e50914;
+  letter-spacing: 0.5px;
   cursor: pointer;
 }
 
 /* Desktop Links */
 .nav-links {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 28px;
 }
 
 .nav-links span {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
   cursor: pointer;
-  transition: color 0.3s;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .nav-links span:hover {
-  color: #b3b3b3;
+  color: #fff;
+}
+
+.nav-links span.active {
+  color: #fff;
+  border-bottom: 2px solid #e50914;
 }
 
 /* Right section */
@@ -58,18 +70,20 @@
 
 /* Login Button */
 .login-btn {
-  background-color: #e50914;
-  border: none;
-  padding: 7px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 7px 16px;
   color: white;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 13px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .login-btn:hover {
-  background-color: #f6121d;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ========================= */
@@ -112,22 +126,25 @@
 }
 
 .side-menu span {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
   cursor: pointer;
+  width: fit-content;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
 }
 
 .side-menu span:hover {
-  color: #e50914;
+  color: #fff;
 }
 
-/* open state */
-.side-menu.open {
-  right: 0;
+.side-menu span.active {
+  color: #fff;
+  border-bottom: 2px solid #e50914;
 }
 
 /* ========================= */
-/* 🔍 SEARCH BAR (merged, no duplicates) */
+/* 🔍 SEARCH BAR */
 /* ========================= */
 
 .search-container {
@@ -140,16 +157,21 @@
   align-items: center;
   gap: 8px;
   position: relative;
-  padding: 10px 14px;
+  padding: 7px 14px;
   color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   transition: border-color 0.2s;
 }
 
 .search-section:focus-within {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.search-icon {
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
 }
 
 .search-section input {
@@ -158,9 +180,10 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
   color: #fff;
-  padding-right: 60px; /* space so text doesn't run under the button */
+  padding-right: 60px;
+  /* space so text doesn't run under the button */
 }
 
 .search-section input::placeholder {
@@ -175,19 +198,19 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #9e2c1d;
+  background: #e50914;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 5px 10px;
-  font-size: 14px;
+  border-radius: 14px;
+  padding: 5px 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
 }
 
 .search-section button:hover {
-  background: #b3341f;
+  background: #f6121d;
 }
 
 .search-section button:active {
@@ -227,22 +250,23 @@
   }
 
   .search-container {
-    margin-left: 10px;
+    margin-left: 20px;
+    flex: 1;
   }
 
   .search-section {
     border-radius: 20px;
-    padding: 6px 10px;
+    padding: 6px 13px;
   }
 
   .search-section input {
     font-size: 13px;
     width: 120px;
-    padding-right: 50px;
+    padding-right: 20px;
   }
 
   .search-section button {
-    padding: 4px 8px;
+    padding: 4px 7px;
     font-size: 12px;
   }
 }
@@ -255,23 +279,22 @@
 
   .logo {
     font-size: 16px;
+
   }
 
   .search-container {
-    margin-left: 0;
-    flex: 1;
+    margin-left: 20;
+
   }
 
   .search-section {
     border-radius: 24px;
-    padding: 5px 8px;
-    width: 100%;
+    width: 60%;
   }
 
   .search-section input {
     font-size: 12px;
-    width: 100%;
-    padding-right: 44px;
+    padding-right: 20px;
   }
 
   .search-section button {
