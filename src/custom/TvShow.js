@@ -1,25 +1,14 @@
-import React, { useEffect } from 'react'
+// useTvShow.js
+import { useQuery } from '@tanstack/react-query'
 import { getTvShow } from '../movies/Movie'
-import { useState } from 'react'
-
 
 export const useTvShow = () => {
-    const [tv, setTv] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        async function load() {
-            const res = await getTvShow()
-
-
-            setTv(res)
-            setLoading(false)
+    const { data: tv = [], isLoading: loading } = useQuery(
+        {
+            queryKey: ['tvshows'],
+            queryFn: getTvShow
         }
-        load()
-
-    }, [])
-
-
+    )
 
     return { tv, loading }
 }

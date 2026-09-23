@@ -19,7 +19,6 @@ const MovieDetails = () => {
     const { addWatch } = useAddWatch()
     const { handlePlay } = useMovieActions();
 
-
     const isInWatchList = list.find((m) => m.id === movie?.id);
 
     if (loading) return <h2>Loading...</h2>;
@@ -28,12 +27,23 @@ const MovieDetails = () => {
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : "https://via.placeholder.com/500x500?text=No+Image";
 
+    const backdropUrl = movie.backdrop_path
+        ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+        : null;
+
+    const runtime = movie.runtime
+        ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
+        : null;
+
+    const cast = movie.credits?.cast?.slice(0, 3).map((c) => c.name).join(", ");
+
     return (
         <>
-            <div className="details-container">
-
-                {/* LEFT SIDE */}
-                <div className="left">
+            <div
+                className={`details-hero ${backdropUrl ? '' : 'no-backdrop'}`}
+                style={backdropUrl ? { '--backdrop-url': `url(${backdropUrl})` } : {}}
+            >
+                <div className="details-container">
 
                     {/* Back Button */}
                     <button
@@ -43,36 +53,56 @@ const MovieDetails = () => {
                         ⬅ Go Back
                     </button>
 
-                    {/* Poster */}
-                    <img src={posterUrl} alt={movie.title} />
-                </div>
+                    <div className="details-body">
+                        {/* LEFT SIDE */}
+                        <div className="left">
+                            <img src={posterUrl} alt={movie.title} />
+                        </div>
 
-                {/* RIGHT SIDE */}
-                <div className="right">
-                    <h1>{movie.title}</h1>
+                        {/* RIGHT SIDE */}
+                        <div className="right">
 
-                    <p className="rating">
-                        ⭐ {movie.vote_average?.toFixed(1)} / 10
-                    </p>
+                            {(movie.genres?.length > 0 || runtime) && (
+                                <div className="badges">
+                                    {runtime && <span className="badge">{runtime}</span>}
+                                    {movie.genres?.map((g) => (
+                                        <span key={g.id} className="badge">{g.name}</span>
+                                    ))}
+                                </div>
+                            )}
 
-                    <p className="overview">
-                        {movie.overview}
-                    </p>
+                            <h1>{movie.title}</h1>
 
-                    <p className="release-date">
-                        🗓 Release Date: {movie.release_date}
-                    </p>
+                            <p className="rating">
+                                ⭐ {movie.vote_average?.toFixed(1)} / 10
+                            </p>
 
-                    <div className="buttons">
-                        <button onClick={() => handlePlay(id)}>
-                            ▶ Play
-                        </button>
+                            <p className="overview">
+                                {movie.overview}
+                            </p>
 
-                        <button onClick={() => addWatch(movie.id)}>
-                            Save
-                        </button>
+                            {cast && (
+                                <p className="cast">
+                                    <span className="cast-label">Cast: </span>{cast}
+                                </p>
+                            )}
 
-                        <PostRating movieId={movie.id} />
+                            <p className="release-date">
+                                🗓 Release Date: {movie.release_date}
+                            </p>
+
+                            <div className="buttons">
+                                <button className="play-btn" onClick={() => handlePlay(id)}>
+                                    ▶ Play
+                                </button>
+
+                                <button className="save-btn" onClick={() => addWatch(movie.id)}>
+                                    Save
+                                </button>
+
+                                <PostRating movieId={movie.id} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

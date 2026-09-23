@@ -1,27 +1,27 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './navbar/NavBar'
-import Banner from './components/Banner'
-import HomeShow from './components/HomeShow'
-import MovieDetails from './components/MovieDetails'
 import Footer from './components/Footer'
-import SavedMovie from './components/SavedMovie'
-import TvSection from './tv/TvSection'
-import Login from './components/Login'
 import { AuthProvider } from './context/AuthContext'
-import Approved from './components/Approved'
-import TvDetails from './tv/TvDetails'
-import TopRarted from './components/TopRarted'
-import NowPlaying from './components/NowPlaying'
-import GenursMovie from './components/GenursMovie'
-import AboutPage from './Shop/AboutPage'
-import ContactPage from './Shop/ContactPage'
-import FAQPage from './Shop/FAQPage'
-import PrivacyPolicy from './Shop/PrivacyPolicy'
-import TermsofUse from './Shop/TermsofUse'
-import SearchFilter from './serchfillter/SearchFilter'
 
-
+// Lazy-loaded route components
+const Banner = lazy(() => import('./components/Banner'))
+const HomeShow = lazy(() => import('./components/HomeShow'))
+const MovieDetails = lazy(() => import('./components/MovieDetails'))
+const SavedMovie = lazy(() => import('./components/SavedMovie'))
+const TvSection = lazy(() => import('./tv/TvSection'))
+const Login = lazy(() => import('./components/Login'))
+const Approved = lazy(() => import('./components/Approved'))
+const TvDetails = lazy(() => import('./tv/TvDetails'))
+const TopRarted = lazy(() => import('./components/TopRarted'))
+const NowPlaying = lazy(() => import('./components/NowPlaying'))
+const GenursMovie = lazy(() => import('./components/GenursMovie'))
+const AboutPage = lazy(() => import('./Shop/AboutPage'))
+const ContactPage = lazy(() => import('./Shop/ContactPage'))
+const FAQPage = lazy(() => import('./Shop/FAQPage'))
+const PrivacyPolicy = lazy(() => import('./Shop/PrivacyPolicy'))
+const TermsofUse = lazy(() => import('./Shop/TermsofUse'))
+const SearchFilter = lazy(() => import('./serchfillter/SearchFilter'))
 
 const App = () => {
   return (
@@ -30,45 +30,36 @@ const App = () => {
 
         <NavBar />
 
-        <Routes>
+        <Suspense fallback={<div className="page-loader">Loading...</div>}>
+          <Routes>
 
-          <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
 
+            <Route path="/" element={
+              <>
+                <Banner />
+                <GenursMovie />
+                <HomeShow />
+                <NowPlaying />
+                <TopRarted />
+              </>
+            } />
+            <Route path="/approved" element={<Approved />} />
 
-          <Route path="/" element={
-            <>
-              <Banner />
-              <GenursMovie />
-              <HomeShow />
-              <NowPlaying />
-              <TopRarted />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/my-list" element={<SavedMovie />} />
+            <Route path="/tv" element={<TvSection />} />
+            <Route path="/tv/:id" element={<TvDetails />} />
+            <Route path="/search" element={<SearchFilter />} />
 
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsofUse />} />
 
-
-            </>
-          } />
-          <Route path="/approved" element={<Approved />} />
-
-          <Route path="/movie/:id" element={<MovieDetails />} />
-          <Route path="/my-list" element={<SavedMovie />} />
-          <Route path="/tv" element={<TvSection />} />
-          <Route path="/tv/:id" element={<TvDetails />} />
-          <Route path="/search" element={<SearchFilter />} />
-
-
-
-
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsofUse />} />
-
-
-
-
-
-        </Routes>
+          </Routes>
+        </Suspense>
 
         <Footer />
 

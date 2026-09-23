@@ -1,28 +1,13 @@
-import { useState, useEffect } from 'react'
+// useTvDetails.js
+import { useQuery } from '@tanstack/react-query'
 import { getTvDetails } from '../movies/Movie'
 
 export const useTvDetails = (seriesId) => {
-  const [tvData, setTvData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { data: tvData = null, isLoading: loading, error } = useQuery({
+    queryKey: ['tvDetails', seriesId],
+    queryFn: () => getTvDetails(seriesId),
+    enabled: !!seriesId
+  })
 
-  useEffect(() => {
-    if (!seriesId) return
-
-    const fetchDetails = async () => {
-      try {
-        setLoading(true)
-        const data = await getTvDetails(seriesId)
-        setTvData(data)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchDetails()
-  }, [seriesId])
-
-  return { tvData, loading, error }
+  return { tvData, loading, error: error?.message }
 }

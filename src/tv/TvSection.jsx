@@ -22,7 +22,7 @@ const TvSection = () => {
 
       <div className='tv-section'>
         <h1>Popular TV Shows</h1>
-        {loadings ? (
+        {loading ? (
           <p>Loading...</p>
         ) : (
           <div className='tv-grid'>

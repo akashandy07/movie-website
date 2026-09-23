@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
-import { getMovieDetails } from "../movies/Movie";
+// useMovieDetails.js
+import { useQuery } from '@tanstack/react-query'
+import { getMovieDetails } from '../movies/Movie'
 
 export const useMovieDetails = (id) => {
-    const [details, setDetails] = useState({});
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        async function load() {
-            const data = await getMovieDetails(id);
-            setDetails(data);
-            setLoading(false);
-        }
-        load();
-    }, [id]);
+    const { data: details = {}, isLoading: loading } = useQuery({
+        queryKey: ['movieDetails', id],
+        queryFn: () => getMovieDetails(id),
+        enabled: !!id
+    })
 
-    return { details, loading };
+    return { details, loading }
 }
-
