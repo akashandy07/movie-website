@@ -3,19 +3,21 @@
     var(--backdrop-url);
   background-size: cover;
   background-position: center top;
-  min-height: 80vh;
+
+  /* reduced from 80vh */
 }
 
 .details-hero.no-backdrop {
   background: #0a0a0a;
+
 }
 
 .details-container {
   position: relative;
   padding: 50px;
   color: white;
-  min-height: 100vh;
   padding-top: 130px;
+  height: 79vh;
 }
 
 .details-body {
